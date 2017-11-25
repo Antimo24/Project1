@@ -52,11 +52,29 @@ classdef Test_isValidData < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);              
         end
         
+        function inferror_input(test)
+        % Verifies nan contained vector input case
+            input = [inf; 1; inf; 2; inf; 3; inf; 4; 5; inf;];
+            exp_output = [1;2;3;4;5];
+            act_output = isValidData(input);
+            test.verifyEqual(act_output,exp_output);  
+        end
+        
+        function infandnanandrowerror_input(test)
+        % Verifies nan contained row vector input case
+            input = [nan; 1; nan; 2; inf; 3; nan; 4; 5; inf;].';
+            exp_output = [1;2;3;4;5];
+            act_output = isValidData(input);
+            test.verifyEqual(act_output,exp_output);              
+        end
+        
+        
+        
         function nonincreasingerror1_input(test)
         % verifies non-increasing vector input case 1
             input = [1;1;1;1;1;1];
             exp_output = [];
-            act_output = isValidData(input);
+            act_output = isValidData(input,'increasing');
             test.verifyEqual(act_output,exp_output);
         end
         
@@ -64,7 +82,7 @@ classdef Test_isValidData < matlab.unittest.TestCase
         % verifies non-increasing vector input case 2
             input = [-1;0;1;1;1;1;1;1;2;3;4;5;6];
             exp_output = [];
-            act_output = isValidData(input);
+            act_output = isValidData(input,'increasing');
             test.verifyEqual(act_output,exp_output);
         end
         
@@ -72,7 +90,7 @@ classdef Test_isValidData < matlab.unittest.TestCase
         % verifies non-increasing vector input case 3
             input = [-1;0;1;0;-1;2;3;4;5;6];
             exp_output = [];
-            act_output = isValidData(input);
+            act_output = isValidData(input,'increasing');
             test.verifyEqual(act_output,exp_output);
         end
         
@@ -80,7 +98,7 @@ classdef Test_isValidData < matlab.unittest.TestCase
         % verifies non-increasing vector input case 4 (random number)
             input = randn([100,1]);
             exp_output = [];
-            act_output = isValidData(input);
+            act_output = isValidData(input,'increasing');
             test.verifyEqual(act_output,exp_output);
         end
         
@@ -88,8 +106,9 @@ classdef Test_isValidData < matlab.unittest.TestCase
         % verifies non-increasing vector input case 5 (nan and row)
             input = randn([1,101]);
             input([1;2;3;87;32;end]) = nan;
+            input([2;4;end]) = inf;
             exp_output = [];
-            act_output = isValidData(input);
+            act_output = isValidData(input, 'increasing');
             test.verifyEqual(act_output,exp_output);
         end
         
@@ -160,6 +179,90 @@ classdef Test_isValidData < matlab.unittest.TestCase
         act_output = isValidData(input);
         test.verifyEqual(act_output,exp_output);
         end      
+        
+        
+        %----------------------update 1.0---------------------------------%
+        
+        function new_valid_input(test)
+        % Verifies valid input case
+            input = sort(randn([100,1]));
+            exp_output = input;
+            act_output = isValidData(input, 'increasing');
+            test.verifyEqual(act_output,exp_output);
+        end
+        
+        function new_rowerror_input(test)
+        % Verifies row vector input case
+            input = sort(randn([1,100]));
+            exp_output = input.';
+            act_output = isValidData(input, 'increasing');
+            test.verifyEqual(act_output,exp_output);            
+        end
+        
+        function new_nanerror_input(test)
+        % Verifies nan contained vector input case
+            input = [nan; 1; nan; 2; nan; 3; nan; 4; 5; nan;];
+            exp_output = [1;2;3;4;5];
+            act_output = isValidData(input, 'increasing');
+            test.verifyEqual(act_output,exp_output);  
+        end
+        
+        function new_nanandrowerror_input(test)
+        % Verifies nan contained row vector input case
+            input = [nan; 1; nan; 2; nan; 3; nan; 4; 5; nan;].';
+            exp_output = [1;2;3;4;5];
+            act_output = isValidData(input, 'increasing');
+            test.verifyEqual(act_output,exp_output);              
+        end
+        
+        function new_inferror_input(test)
+        % Verifies nan contained vector input case
+            input = [inf; 1; inf; 2; inf; 3; inf; 4; 5; inf;];
+            exp_output = [1;2;3;4;5];
+            act_output = isValidData(input, 'increasing');
+            test.verifyEqual(act_output,exp_output);  
+        end
+        
+        function new_infandnanandrowerror_input(test)
+        % Verifies nan contained row vector input case
+            input = [nan; 1; nan; 2; inf; 3; nan; 4; 5; inf;].';
+            exp_output = [1;2;3;4;5];
+            act_output = isValidData(input, 'increasing');
+            test.verifyEqual(act_output,exp_output);              
+        end
+               
+        
+        function nonincreasing1_input(test)
+        % verifies non-increasing vector input case 1
+            input = [1;1;1;1;1;1];
+            exp_output = input;
+            act_output = isValidData(input);
+            test.verifyEqual(act_output,exp_output);
+        end
+        
+        function nonincreasing2_input(test)
+        % verifies non-increasing vector input case 2
+            input = [-1;0;1;1;1;1;1;1;2;3;4;5;6];
+            exp_output = input;
+            act_output = isValidData(input);
+            test.verifyEqual(act_output,exp_output);
+        end
+        
+        function nonincreasing3_input(test)
+        % verifies non-increasing vector input case 3
+            input = [-1;0;1;0;-1;2;3;4;5;6];
+            exp_output = input;
+            act_output = isValidData(input);
+            test.verifyEqual(act_output,exp_output);
+        end
+        
+        function increasing4_input(test)
+        % verifies non-increasing vector input case 4 (random number)
+            input = randn([100,1]);
+            exp_output = input;
+            act_output = isValidData(input);
+            test.verifyEqual(act_output,exp_output);
+        end
         
     end
 end
