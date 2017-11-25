@@ -4,6 +4,7 @@ function output_data = isValidData(input_data)
 % return input data if it is valid, two exceptions
 % exp 1: if it's row vector, transpose it and examin again
 % exp 2: if it has nan, delete it and examin again
+%
 %   Copyright 2017 Wenjie Liao
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,12 +20,16 @@ function output_data = isValidData(input_data)
 %   limitations under the License.
 try
     validateattributes(input_data, {'numeric'},...
-        {'nonempty', 'column', 'real', 'nonnan', 'increasing'})
+        {'nonempty', 'column', 'real', 'nonnan', 'finite', 'increasing'})
     output_data = input_data;
 catch ME
     switch ME.identifier
         case 'MATLAB:expectedNonNaN'
             output_data = input_data(~any(isnan(input_data),2));
+            warning('Invalid data type: Nan have been deleted.')
+            output_data = isValidData(output_data);
+        case 'MATLAB:expectedFinite'
+            output_data = input_data(~any(isinf(input_data),2));
             warning('Invalid data type: Nan have been deleted.')
             output_data = isValidData(output_data);
         case 'MATLAB:expectedColumn'
