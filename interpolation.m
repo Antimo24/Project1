@@ -14,13 +14,14 @@ function [x_output, y_output] = interpolation(x_input, y_input, mesh_density)
 %   See the License for the specific language governing permissions and
 %   limitations under the License.
 
+% examine parameter inputed
 switch nargin
     case 2
-        mesh_density = 5;
+        mesh_density = 1;
     case 3
         try
             validateattributes(mesh_density, {'numeric'},...
-            {'nonempty', 'numel', 1, 'real', 'nonnan', 'finite', '>=', 5, '<=', 100});
+            {'nonempty', 'numel', 1, 'real', 'nonnan', 'finite', '>=', 1, '<=', 100});
             mesh_density = floor(mesh_density);
         catch ME
             switch ME.identifier
@@ -28,7 +29,7 @@ switch nargin
                     mesh_density = 100;
                     warning('Inivalid interpolation factor.')
                 otherwise
-                    mesh_density = 5;
+                    mesh_density = 1;
                     warning('Inivalid interpolation factor.')
             end
         end
@@ -38,15 +39,26 @@ switch nargin
 %         error('Invalid parameter number.')
 end
 
+
+% validate input data
 interp_method = 'spline';
 x_input = isValidData(x_input, 'increasing');
 y_input = isValidData(y_input);
 [x_input, y_input] = isSameLength(x_input, y_input);
+flag_isEven = isEvenlyDistributed(x_input);
 
 
-x_output = linspace(min(x_input), max(x_input), mesh_density*length(x_input)).';
-y_output = interp1(x_input, y_input, x_output, interp_method);
+% do the interpolation
+if (flag_isEven && mesh_density==1)
+    % do not interpolate if xaxis is evenly dist and mesh density is 1
+    x_output = x_input;
+    y_output = y_input;
+else
+    x_output = linspace(min(x_input), max(x_input), mesh_density*length(x_input)).';
+    y_output = interp1(x_input, y_input, x_output, interp_method);
+end
 
+% plot
 figure()
 plot(x_input, y_input, 'x', 'linewidth', 1);
 hold on
