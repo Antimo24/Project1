@@ -1,5 +1,5 @@
 function [x_output, y_output] = interpolation(x_input, y_input, mesh_density)
-%INTERPOLATION 此处显示有关此函数的摘要
+%INTERPOLATION 
 %   Copyright 2017 Wenjie Liao
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
