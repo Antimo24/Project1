@@ -20,11 +20,11 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
 
     methods (Test)
         
-        function valid_input(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = 10;
             
             
@@ -38,11 +38,11 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input2(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input2(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = 100;
             
             
@@ -56,12 +56,12 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input3(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
-            mesh_density = 5;
+        function valid_input3(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
+            mesh_density = 1;
             
             
             exp_x = linspace(min(xdata), max(xdata), mesh_density*nData).';
@@ -74,11 +74,11 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input4(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input4(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = 56.1231837123;
             
             
@@ -92,11 +92,11 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input5(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input5(test)  
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = 99.9999;
             
             
@@ -110,12 +110,12 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input6(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
-            mesh_density = 5.00001;
+        function valid_input6(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
+            mesh_density = 1.00001;
             
             
             exp_x = linspace(min(xdata), max(xdata), floor(mesh_density)*nData).';
@@ -128,15 +128,15 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input7(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input7(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = 0.01;
             
             
-            exp_x = linspace(min(xdata), max(xdata), 5*nData).';
+            exp_x = linspace(min(xdata), max(xdata), 1*nData).';
             exp_y = interp1(xdata, ydata, exp_x, 'spline');
             exp_output = [exp_x, exp_y];
             
@@ -146,11 +146,11 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input8(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input8(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = 100.0001;
             
             
@@ -164,15 +164,15 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input9(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input9(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = -10.01213;
             
             
-            exp_x = linspace(min(xdata), max(xdata), 5*nData).';
+            exp_x = linspace(min(xdata), max(xdata), 1*nData).';
             exp_y = interp1(xdata, ydata, exp_x, 'spline');
             exp_output = [exp_x, exp_y];
             
@@ -182,15 +182,15 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input10(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input10(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = 10 + 0.0012i;
             
             
-            exp_x = linspace(min(xdata), max(xdata), 5*nData).';
+            exp_x = linspace(min(xdata), max(xdata), 1*nData).';
             exp_y = interp1(xdata, ydata, exp_x, 'spline');
             exp_output = [exp_x, exp_y];
             
@@ -200,15 +200,15 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input11(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input11(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = [];
             
             
-            exp_x = linspace(min(xdata), max(xdata), 5*nData).';
+            exp_x = linspace(min(xdata), max(xdata), 1*nData).';
             exp_y = interp1(xdata, ydata, exp_x, 'spline');
             exp_output = [exp_x, exp_y];
             
@@ -218,14 +218,14 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input12(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input12(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             
             
-            exp_x = linspace(min(xdata), max(xdata), 5*nData).';
+            exp_x = linspace(min(xdata), max(xdata), 1*nData).';
             exp_y = interp1(xdata, ydata, exp_x, 'spline');
             exp_output = [exp_x, exp_y];
             
@@ -235,19 +235,103 @@ classdef Test_func_interpolation < matlab.unittest.TestCase
             test.verifyEqual(act_output,exp_output);    
         end
         
-        function valid_input13(test)
         % Verifies valid input case
-            nData = 100;
-            xdata = sort(randn([nData,1]));
-            ydata = randn([nData,1]);
+        function valid_input13(test)
+            nData = 5;
+            xdata = sort(abs(randn([nData,1])));
+            ydata = sort(randn([nData,1]));
             mesh_density = [1;2];
             
             
-            exp_x = linspace(min(xdata), max(xdata), 5*nData).';
+            exp_x = linspace(min(xdata), max(xdata), 1*nData).';
             exp_y = interp1(xdata, ydata, exp_x, 'spline');
             exp_output = [exp_x, exp_y];
             
             [interp_x, interp_y] = interpolation(xdata, ydata, mesh_density);
+            act_output = [interp_x, interp_y];
+            
+            test.verifyEqual(act_output,exp_output);    
+        end
+        
+        % test by pass input (evenly distributed x and mesh density=1)
+        function bypass_test1(test)
+            nData = 5;
+            xdata = [1;2;3;4;5];
+            ydata = sort(randn([nData,1]));
+            mesh_density = 1;
+            
+            exp_output = [xdata, ydata];
+            
+            [interp_x, interp_y] = interpolation(xdata, ydata, mesh_density);
+            act_output = [interp_x, interp_y];
+            
+            test.verifyEqual(act_output,exp_output);    
+        end
+        
+        % test by pass input (evenly distributed x and mesh density=1)
+        function bypass_test2(test)
+            xdata = unifrnd([-1000:1:1000].',[-999:1:1001].');
+            nData = length(xdata);
+            ydata = sort(randn([nData,1]));
+            mesh_density = 1;
+            
+            exp_output = [xdata, ydata];
+            
+            [interp_x, interp_y] = interpolation(xdata, ydata, mesh_density);
+            act_output = [interp_x, interp_y];
+            
+            test.verifyEqual(act_output,exp_output);    
+        end
+        
+        % test by pass input (real data)
+        function bypass_test3(test)
+            data = load('NMR.csv');
+            xdata = data(:,1);
+            ydata = data(:,2);
+            
+            exp_output = [xdata, ydata];
+            
+            [interp_x, interp_y] = interpolation(xdata, ydata);
+            act_output = [interp_x, interp_y];
+            
+            test.verifyEqual(act_output,exp_output);    
+        end
+        
+        % test by pass input (real data)
+        function bypass_test4(test)
+            data = load('KBr.csv');
+            xdata = data(:,1);
+            ydata = data(:,2);
+           
+            exp_output = [xdata, ydata];
+            
+            [interp_x, interp_y] = interpolation(xdata, ydata);
+            act_output = [interp_x, interp_y];
+            
+            test.verifyEqual(act_output,exp_output);    
+        end
+        % test by pass input (real data)
+        function bypass_test5(test)
+            data = load('HCl-IR-long.csv');
+            xdata = data(:,1);
+            ydata = data(:,2);
+           
+            exp_output = [xdata, ydata];
+            
+            [interp_x, interp_y] = interpolation(xdata, ydata);
+            act_output = [interp_x, interp_y];
+            
+            test.verifyEqual(act_output,exp_output);    
+        end
+        % test by pass input (real data)
+        function bypass_test6(test)
+            data = load('CO2-IR.csv');
+            xdata = data(:,1);
+            ydata = data(:,2);
+           
+            exp_output = [xdata, ydata];
+            
+            [interp_x, interp_y] = interpolation(xdata, ydata);
             act_output = [interp_x, interp_y];
             
             test.verifyEqual(act_output,exp_output);    
